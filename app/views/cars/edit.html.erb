@@ -1,0 +1,120 @@
+    <div class="main-panel" style="width: 100%">
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                <a class="navbar-brand" href="<%= cars_url %>">Dashboard
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="<%= new_car_url %>"  class="btn btn-info btn-fill btn-wd">
+                            <i class="ti-plus"></i> Add Vehicle     
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#administrator" class="dropdown-toggle btn-rotate" data-toggle="dropdown" aria-expanded="false">
+                            <i class="ti-user"></i>  Administrator
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<%= onwer_profile_url %>">Profile</a></li>
+                            <% if current_user.blank? %>
+                            <li><a href="<%= login_users_url %>">Login</a></li>
+                            <li><a href="<%= register_users_url %>">Register</a></li>
+                            <% else %>
+                            <li><a href="<%= logout_users_url %>">Logout</a></li>
+                            <% end %>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Add Vehicle</h4>
+                        </div>
+                        <div class="content">
+                            <%= form_for @car, url: car_url , html: { multipart: true }  do |f|%>
+                           <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Car Name</label>
+                                        <%= f.text_field :name ,:class=>"form-control border-input" ,:required => true %>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Model</label>
+                                        <%= f.text_field :model ,:class=>"form-control border-input"%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Color</label>
+                                        <%= f.text_field :color ,:class=>"form-control border-input"%>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Transmission</label>
+                                        <select name="car[transmission]" class="form-control border-input">
+                                            <option>Automotic</option>
+                                            <option>Manual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fuel type</label>
+                                        <select name="car[fuel_type]" class="form-control border-input">
+                                            <option>Gasoline</option>
+                                            <option>Diesel</option>
+                                            <option>Gas</option>
+                                            <option>Electirc</option>
+                                            <option>Hybrid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Avatar</label>
+                                        <%= f.file_field :avatar ,:required => true,:class=>"form-control border-input"%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" name="confirm" class="btn btn-info btn-fill btn-wd">SAve
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                            <% end %>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <%= render "shared/footer"%>
+
+</div>

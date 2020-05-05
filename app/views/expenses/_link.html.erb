@@ -1,0 +1,13 @@
+<% if  current_user.has_role? :driver and expense.created_at.to_date != Date.today %>
+	<a href="<%= expense_url(expense)%>">
+		<btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-eye"></i></btn>
+	</a>
+<% else %>
+	<a href="<%= expense_url(expense)%>">
+		<btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-eye"></i></btn>
+	</a>
+	<a href="<%= edit_expense_url(expense)%>"><btn class="btn btn-sm btn-info btn-icon"><i class="fa fa-edit"></i></btn></a>
+	<%= link_to   expense_url(expense),  method: :delete, data: { confirm: 'Are you sure?' } ,:class=> "btn btn-sm btn-danger btn-icon" do %>
+		<i class="fa fa-remove"></i>
+	<% end %>
+<% end %> 

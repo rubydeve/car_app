@@ -1,0 +1,16 @@
+ 
+<% if  current_user.has_role? :driver and agr.created_at.to_date != Date.today %>
+<a href="<%= agreement_url(agr) %>">
+ 	<btn class="btn btn-sm btn-info btn-icon"><i class="fa fa-eye"></i></btn>
+ </a>
+<% else %>
+ <a href="<%= edit_agreement_url(agr) %>">
+
+ 	<btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-edit"></i></btn>
+ </a>
+ <a href="<%= agreement_url(agr) %>">
+
+ 	<btn class="btn btn-sm btn-info btn-icon"><i class="fa fa-eye"></i></btn>
+ </a>
+
+<% end %>

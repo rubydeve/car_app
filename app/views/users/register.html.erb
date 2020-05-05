@@ -1,0 +1,58 @@
+
+<div class="content">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<img src="/assets/logo.png" class="img-fluid float-left" style="background: no-repeat;background: no-repeat;border: none;">
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+				<%= form_for @user, url: user_register_users_url do |f|%>
+				<div class="card">
+					<div class="header" style="display: flex;justify-content: space-between;">
+						<h3 class="title">Login</h3>
+						<span></span>
+                    <a href="<%= login_users_url %>" class="btn btn-register">Sign In</a>
+						
+					</div>
+					<div class="content">
+						<div class="form-group">
+							<label>First Name </label>
+							<%= f.text_field :first_name ,:placeholder=>"First Name Enter Here" ,:class=>"form-control input-no-border"%>
+						</div>
+						<div class="form-group">
+							<label>Last Name</label>
+							<%= f.text_field :last_name ,:placeholder=>"Last Name Enter Here" ,:class=>"form-control input-no-border"%>
+						</div>
+						<div class="form-group">
+							<label>Phone Number</label>
+							<%= f.text_field :phone_number ,:placeholder=>"Phone Number Enter Here" ,:class=>"form-control input-no-border"%>
+						</div>
+						<div class="form-group">
+							<label>Address</label>
+							<%= f.text_field :address ,:placeholder=>"Address Enter Here" ,:class=>"form-control input-no-border"%>
+						</div>
+						
+						<div class="form-group">
+							<label>Email</label>
+							<%= f.text_field :email ,:placeholder=>"Email Enter Here" ,:class=>"form-control input-no-border"%>
+						</div>
+
+						<div class="form-group">
+							<label>Password</label>
+							<%= f.password_field :password ,:placeholder=>"Password Enter Here" ,:class=>"form-control input-no-border"%>
+													</div>
+
+						<div class="text-center">
+							<button type="submit" name="loginF" class="btn btn-fill btn-wd ">Sign up</button>
+						</div>
+					</div>
+				</div>
+				<% end %>   
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,108 @@
+    <div class="main-panel" style="width: 100%">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                <a class="navbar-brand" href="<%= cars_url %>">Dashboard</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="<%= new_car_url %>"  class="btn btn-info btn-fill btn-wd">
+                            <i class="ti-plus"></i> Add Vehicle     
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#administrator" class="dropdown-toggle btn-rotate" data-toggle="dropdown" aria-expanded="false">
+                            <i class="ti-user"></i>  Administrator
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<%= onwer_profile_url %>">Profile</a></li>
+                            <% if current_user.blank? %>
+                            <li><a href="<%= login_users_url %>">Login</a></li>
+                            <li><a href="<%= register_users_url %>">Register</a></li>
+                            <% else %>
+                            <li><a href="<%= logout_users_url %>">Logout</a></li>
+                            <% end %>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                 <% @cars.each do |car|%>
+                 <div class="col-lg-3 col-sm-6">
+                    <div class="card">
+                        <div class="cover clearfix">
+                            <img class="card-img-top" src="<%= car.avatar %>" alt="card image" style=
+                            "height: 180px;width: 100%;display: block;">
+                        </div>
+                        <div class="card-body "  style="padding-bottom: 20px;">
+                            <div class="row text-center">
+
+                                <h4 class="card-title"><%= car.name %></h4>
+
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-6">
+                                    <p class="card-text"><%= car.model %></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="card-text"><%= car.color %></p>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-6">
+                                    <p class="card-text"><%= car.transmission %></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="card-text"><%= car.fuel_type %></p>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <a href="<%= car_url(car)%>">
+                                    <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-eye"></i></btn>
+                                </a>
+                                <a href="<%= edit_car_url(car) %>">
+                                    <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-edit"></i></btn>
+                                </a>
+                                <%= link_to car_url(car),  method: :delete, data: { confirm: 'Are you sure?' } ,:class=> "btn btn-sm btn-danger btn-icon" do %>
+                                <i class="fa fa-remove"></i>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+       <%= render "shared/footer"%>
+
+</div>
+<style type="text/css">
+.card {
+    border: 4px solid #777777;
+    border-radius: 10px; 
+}
+.clearfix{
+   border-radius: 5px; 
+   overflow: hidden;
+}    
+p{
+   overflow-wrap: break-word;
+}
+</style>

@@ -1,0 +1,110 @@
+    <div class="main-panel" style="width: 100%">
+    	<nav class="navbar navbar-default">
+    		<div class="container-fluid">
+    			<div class="navbar-header">
+    				<button type="button" class="navbar-toggle">
+    					<span class="sr-only">Toggle navigation</span>
+    					<span class="icon-bar bar1"></span>
+    					<span class="icon-bar bar2"></span>
+    					<span class="icon-bar bar3"></span>
+    				</button>
+    				<a class="navbar-brand" href="<%=  current_user.roles.first.try(:name) == "owner" ? cars_url : dashboard_index_url  %>">Dashboard</a>
+    			</div>
+    			<div class="collapse navbar-collapse">
+    				<ul class="nav navbar-nav navbar-right">
+                        <% if  current_user.roles.first.try(:name) == "owner"%>
+    					<li>
+    						<a href="<%= new_car_url %>"  class="btn btn-info btn-fill btn-wd">
+    							<i class="ti-plus"></i> Add Vehicle     
+    						</a>
+    					</li>
+                        <% end %>
+    					<li class="dropdown">
+    						<a href="#administrator" class="dropdown-toggle btn-rotate" data-toggle="dropdown" aria-expanded="false">
+    							<i class="ti-user"></i>  <%=  current_user.roles.first.try(:name) == "owner" ? "Administrator" : "Driver"%> 
+    						</a>
+    						<ul class="dropdown-menu">
+    							<li><a href="<%= onwer_profile_url %>">Profile</a></li>
+    							<% if current_user.blank? %>
+    							<li><a href="<%= login_users_url %>">Login</a></li>
+    							<li><a href="<%= register_users_url %>">Register</a></li>
+    							<% else %>
+    							<li><a href="<%= logout_users_url %>">Logout</a></li>
+    							<% end %>
+    						</ul>
+    					</li>
+    				</ul>
+
+    			</div>
+    		</div>
+    	</nav>
+
+    	<div class="content">
+    		<div class="container-fluid">
+    			<div class="row">
+    				<div class="col-md-12">
+    					<%= form_for current_user, url: profile_url(current_user) do |f|%>
+    					<div class="card">
+    						<div class="content">
+
+    							<div class="form-group">
+    								<label>First Name </label>
+    								<%= f.text_field :first_name ,:placeholder=>"First Name Enter Here" ,:required => true ,:class=>"form-control input-no-border" , :readonly => true%>
+    							</div>
+    							<div class="form-group">
+    								<label>Last Name</label>
+    								<%= f.text_field :last_name ,:placeholder=>"Last Name Enter Here" ,:required => true ,:class=>"form-control input-no-border", :readonly => true%>
+    							</div>
+    							<div class="form-group">
+    								<label>Phone Number</label>
+    								<%= f.text_field :phone_number ,:placeholder=>"Phone Number Enter Here",:required => true  ,:class=>"form-control input-no-border", :readonly => true%>
+    							</div>
+    							<div class="form-group">
+    								<label>Address</label>
+    								<%= f.text_field :address ,:placeholder=>"Address Enter Here" ,:class=>"form-control input-no-border",:required => true , :readonly => true%>
+    							</div>
+
+    							<div class="form-group">
+    								<label>Email</label>
+    								<%= f.text_field :email ,:placeholder=>"Email Enter Here" ,:class=>"form-control input-no-border",:pattern => "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$",:required => true, :readonly => true %>
+    							</div>
+
+    							<div class="form-group">
+    								<label>Password</label>
+    								<%= f.password_field :password ,:required => true ,:placeholder=>"Password Enter Here" ,:class=>"form-control input-no-border", :readonly => true%>
+    							</div>
+    							<div class="form_footer text-center">
+    								<button  name="loginF" class="btn btn-fill btn-wd Edit">Edit</button>
+    							</div>
+    						</div>
+    					</div>    				
+    					<% end %>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+         <%= render "shared/footer"%>
+    </div>
+    <style type="text/css">
+    .card {
+    	border: 4px solid #777777;
+    	border-radius: 10px; 
+    }
+    .clearfix{
+    	border-radius: 5px; 
+    	overflow: hidden;
+    }    
+    p{
+    	overflow-wrap: break-word;
+    }
+</style>
+
+
+<script type="text/javascript">
+	$(".Edit").click(function () {
+		
+		// body...
+		$(".form-control").prop('readonly', false);
+		$(".form_footer").html('<button type="submit" name="loginF" class="btn btn-fill btn-wd Edit">Save</button>')
+	})
+</script>

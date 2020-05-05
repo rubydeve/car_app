@@ -1,0 +1,50 @@
+
+
+<div class="sidebar" data-active-color="danger">
+
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="<%= root_url %>" class="simple-text">
+                <img src="/assets/logo.png" class="img-fluid float-left" style="background: no-repeat;background: no-repeat;border: none;    height: 65px;">
+            </a>
+            <span></span>
+        </div>
+
+        <ul class="nav">
+            <li class="<%= is_active == "dashboard" ? "active" : " " %>">
+                <a href="<%= dashboard_index_url %>">
+                    <i class="ti-panel"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="<%= is_active == "expenses" ? "active" : " " %>">
+                <a href="<%= expenses_url %>">
+                    <i class="ti-money"></i>
+                    <p>Expenses</p>
+                </a>
+            </li>
+            <li class="<%= is_active == "agreements" ? "active" : " " %>">
+                <a href="<%= agreements_url %>">
+                    <i class="ti-file"></i>
+                    <p>Agreements</p>
+                </a>
+            </li>
+            <% if  current_user and current_user.has_role? :owner%>
+            <li class="<%= is_active == "reports" ? "active" : " " %>">
+                <a href="<%= reports_url %>">
+                    <i class="ti-pie-chart"></i>
+                    <p>Reports</p>
+                </a>
+            </li>
+            
+            <li class="<%= is_active == "drivers" ? "active" : " " %>">
+                <a href="<%= drivers_url %>">
+                    <i class="ti-user"></i>
+                    <p>Driver</p>
+                </a>
+            </li>
+            <% end %>
+            
+        </ul>
+    </div>
+</div>
